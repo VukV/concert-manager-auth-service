@@ -1,0 +1,26 @@
+{
+  "name": "concert-manager-auth-service",
+  "version": "1.0.0",
+  "description": "This is a part of NodeJS microservice project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VukV/concert-manager-auth-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VukV/concert-manager-auth-service/issues"
+  },
+  "homepage": "https://github.com/VukV/concert-manager-auth-service#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
