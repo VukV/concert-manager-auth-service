@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fetch = require('cross-fetch');
+const Joi = require('joi');
 require('dotenv').config();
 
 const route = express.Router();
