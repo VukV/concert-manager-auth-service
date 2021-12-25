@@ -13,8 +13,8 @@ route.use(express.urlencoded({ extended: true }));
 route.post('/login', (req, res) => {
 
     const validationText = Joi.object().keys({
-        username: Joi.string().min(3).max(12).required(),
-        password: Joi.string().min(4).max(12).required()
+        username: Joi.string().alphanum().min(3).max(12).required(),
+        password: Joi.string().alphanum().min(4).max(12).required()
     });
 
     Joi.validate(req.body, validationText, (err, result) => {

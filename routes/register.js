@@ -13,8 +13,8 @@ route.use(express.urlencoded({ extended: true }));
 route.post('/register', (req, res) => {
 
     const validationText = Joi.object().keys({
-        username: Joi.string().min(3).max(12).required(),
-        password: Joi.string().min(4).max(12).required(),
+        username: Joi.string().alphanum().min(3).max(12).required(),
+        password: Joi.string().alphanum().min(4).max(12).required(),
         email: Joi.string().trim().email().required()
     });
 
