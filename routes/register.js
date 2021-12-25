@@ -11,31 +11,44 @@ route.use(express.urlencoded({ extended: true }));
 
 route.post('/register', (req, res) => {
 
-    const registeringUser = {
-        username: req.body.username,
-        email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10)
-    };
+    const validationText = Joi.object().keys({
+        username: Joi.string().min(3).max(12).required(),
+        password: Joi.string().min(4).max(12).required(),
+        email: Joi.string().trim().email().required()
+    });
 
-    fetch('http://localhost:8081/admin/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(registeringUser)
-    })
-    .then(res => res.json())
-        .then(rows => {
-
-            const user = {
-                id: rows.id,
-                username: rows.username,
-                privilege: rows.privilege
+    Joi.validate(req.body, validationText, (err, result) => {
+        if(err){
+            res.send({message: err.details[0].message});
+        }
+        else{
+            const registeringUser = {
+                username: req.body.username,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10)
             };
-            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-            res.json({token: token});
-        })
-        .catch(err => res.status(500).json(err));
+        
+            fetch('http://localhost:8081/admin/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registeringUser)
+            })
+            .then(res => res.json())
+                .then(rows => {
+        
+                    const user = {
+                        id: rows.id,
+                        username: rows.username,
+                        privilege: rows.privilege
+                    };
+                    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+                    res.json({token: token});
+                })
+                .catch(err => res.status(500).json(err));
+        }
+    })
 });
 
 module.exports = route;
