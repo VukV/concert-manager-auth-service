@@ -1,9 +1,11 @@
 # Concert Manager
 ### Authentication Service
 
-This is a part of NodeJS microservice project.
+This is a part of NodeJS service-oriented project for Scripting Languages course at Faculty of Computing.
+
+The purpose of this service is to provide user authentication and authorization using JWT token.
 
 All services:
-- [application service](https://github.com/VukV/concert-manager-app-service)
-- [database service](https://github.com/VukV/concert-manager-crud-service)
-- [authentication service](https://github.com/VukV/concert-manager-auth-service)
+- [Application Service](https://github.com/VukV/concert-manager-app-service)
+- [Database Service](https://github.com/VukV/concert-manager-crud-service)
+- [Authentication Service](https://github.com/VukV/concert-manager-auth-service)
